@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    {% if True %}
+    {% if status == 'menu' %}
+        <input type="submit" class="btn btn-success" name="-2" value="Start" ><br>
+        <input type="checkbox" name="player_first"> Gracz pierwszy<br> Wybór symbolu gracza:
+
+        <div>
+        <input type="radio" id="circle" name="choice" value="circle" checked>
+        <label for="circle">Kółko</label>
+        </div>
+
+        <div>
+        <input type="radio" id="cross" name="choice" value="cross">
+        <label for="cross">Krzyżyk</label>
+        </div>
+
+        {% endif %}
+        {% if status == 'game' %}
+        {% if win == -1 %}
+            <script>window.alert("Wygrałeś!");</script>
+        {% endif %}
+        {% if win == 1 %}
+           <script>window.alert("Przegrałeś!");</script>
+        {% endif %}
+        {% if win == 2 %}
+           <script>window.alert("Remis!");</script>
+        {% endif %}
+
+
+        <table>
+            <tr>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="0" class="btn btn-primary" value="{% if board.0 == 1 %}{{negative}}{% endif %}{% if board.0 == -1 %}{{choice}}{% endif %}" {% if board.0 != 0 or win != 0 %}  {{'disabled'}} {% endif %} >
+                </td>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="1" class="btn btn-primary" value="{% if board.1 == 1 %}{{negative}}{% endif %}{% if board.1 == -1 %}{{choice}}{% endif %}" {% if board.1 != 0 or win != 0  %}  {{'disabled'}} {% endif %} >
+                </td>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="2" class="btn btn-primary" value="{% if board.2 == 1 %}{{negative}}{% endif %}{% if board.2 == -1 %}{{choice}}{% endif %}" {% if board.2 != 0  or win != 0  %}  {{'disabled'}} {% endif %} >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="3" class="btn btn-primary" value="{% if board.3 == 1 %}{{negative}}{% endif %}{% if board.3 == -1 %}{{choice}}{% endif %}" {% if board.3 != 0 or win != 0   %}  {{'disabled'}} {% endif %} >
+                </td>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="4" class="btn btn-primary" value="{% if board.4 == 1 %}{{negative}}{% endif %}{% if board.4 == -1 %}{{choice}}{% endif %}" {% if board.4 != 0 or win != 0   %}  {{'disabled'}} {% endif %} >
+                </td>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="5" class="btn btn-primary" value="{% if board.5 == 1 %}{{negative}}{% endif %}{% if board.5 == -1 %}{{choice}}{% endif %}" {% if board.5 != 0 or win != 0   %}  {{'disabled'}} {% endif %} >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="6" class="btn btn-primary" value="{% if board.6 == 1 %}{{negative}}{% endif %}{% if board.6 == -1 %}{{choice}}{% endif %}" {% if board.6 != 0 or win != 0  %}  {{'disabled'}} {% endif %} >
+                </td>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="7" class="btn btn-primary" value="{% if board.7 == 1 %}{{negative}}{% endif %}{% if board.7 == -1 %}{{choice}}{% endif %}" {% if board.7 != 0 or win != 0  %}  {{'disabled'}} {% endif %} >
+                </td>
+                <td>
+                    <input type="submit" style="width:210px; height:210px; font-size: 128px;" name="8" class="btn btn-primary" value="{% if board.8 == 1 %}{{negative}}{% endif %}{% if board.8 == -1 %}{{choice}}{% endif %}" {% if board.8 != 0 or win != 0  %}  {{'disabled'}} {% endif %} >
+                </td>
+            </tr>
+
+        </table>
+
+                    <input type="submit" name="-1" class="btn btn-warning" value="Reset" >
+    {% endif %}
+    {% endif %}
+
+</form>
+
+{% if form.is_valid %}
+ {% if status == 'game' %}
+<p> The model predicted: <b>{{ prediction }}</b></p>
+{% endif %}
+{% endif %}
+
+{% endblock %}
