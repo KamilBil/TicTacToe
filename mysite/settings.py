@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e9l&7n72@x7e5djp*d_s%wtxk$2x1d15p+fm%@0p#!0ufd1&8=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tictactoe-ml-game.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
